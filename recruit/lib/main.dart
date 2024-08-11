@@ -123,12 +123,12 @@ class _BottomNavigationBarState extends State<YJBottomNavigationBar> {
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
+            icon: Icon(Icons.business),
+            label: 'お仕事一覧',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.business),
-            label: 'Business',
+            icon: Icon(Icons.person),
+            label: 'マイページ',
           ),
         ],
         selectedItemColor: Colors.red, // 图标选中时的颜色
