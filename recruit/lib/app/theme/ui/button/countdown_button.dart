@@ -54,18 +54,22 @@ class _CountdownButtonState extends State<CountdownButton> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+      padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
       decoration: BoxDecoration(
         color: const Color.fromARGB(255, 235, 21, 21),
         borderRadius: BorderRadius.circular(20),
       ),
-      child: Text(
-        _formatDuration(_timeLeft),
-        style: TextStyle(
-          fontSize: 16,
-          color: Colors.white,
+      child: IntrinsicWidth(
+          child: Align(
+        alignment: Alignment.center,
+        child: Text(
+          _formatDuration(_timeLeft),
+          style: TextStyle(
+            fontSize: 16,
+            color: Colors.white,
+          ),
         ),
-      ),
+      )),
     );
   }
 }
