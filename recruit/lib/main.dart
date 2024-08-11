@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import './app/theme/ui/button/countdown_button.dart';
+import './app/theme/ui/item/staff_item.dart';
+import './app/theme/ui/view/textDes_widget.dart';
 
 void main() {
   runApp(BottomNavigationBarExampleApp());
@@ -23,15 +25,57 @@ class YJBottomNavigationBar extends StatefulWidget {
   State<YJBottomNavigationBar> createState() => _BottomNavigationBarState();
 }
 
+class ListItem {
+  final String type;
+  final String title;
+  final String? subtitle; // 可以为空的字段
+
+  ListItem({required this.type, required this.title, this.subtitle});
+}
+
+class ItemListView extends StatelessWidget {
+  // final List<ListItem> items;
+
+  final List<ListItem> items = [
+    ListItem(type: 'header', title: 'Header 1'),
+    ListItem(type: 'normal', title: 'Item 1', subtitle: 'Subtitle 1'),
+    ListItem(type: 'normal', title: 'Item 2', subtitle: 'Subtitle 2'),
+    ListItem(type: 'header', title: 'Header 2'),
+    ListItem(type: 'normal', title: 'Item 3', subtitle: 'Subtitle 3'),
+  ];
+
+  ItemListView();
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView.builder(
+      itemCount: items.length,
+      itemBuilder: (context, index) {
+        final item = items[index];
+
+        void handleTap() {
+          // 在这里处理点击事件
+          print('Item $index 被点击');
+        }
+
+        if (item.type == 'header') {
+          return StaffItem(isfinish: true, onTap: handleTap);
+        } else if (item.type == 'normal') {
+          return StaffItem(isfinish: false, onTap: handleTap);
+        }
+        return SizedBox.shrink(); // 如果有未定义的类型
+      },
+    );
+  }
+}
+
 class _BottomNavigationBarState extends State<YJBottomNavigationBar> {
   int _selectedIndex = 0;
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
+
   static List<Widget> _widgetOptions = <Widget>[
-    const Text(
-      'Index 0: Home',
-      style: optionStyle,
-    ),
+    ItemListView(),
     StaffDetailState(),
   ];
 
@@ -41,15 +85,40 @@ class _BottomNavigationBarState extends State<YJBottomNavigationBar> {
     });
   }
 
+  final List<ListItem> items = [
+    ListItem(type: 'header', title: 'Header 1'),
+    ListItem(type: 'normal', title: 'Item 1', subtitle: 'Subtitle 1'),
+    ListItem(type: 'normal', title: 'Item 2', subtitle: 'Subtitle 2'),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Top'),
+        title: const Text('大阪府'),
       ),
+      // body: (StaffDetailState()),
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),
       ),
+      // body: ListView.builder(
+      //   itemCount: items.length,
+      //   itemBuilder: (context, index) {
+      //     final item = items[index];
+
+      //     void handleTap() {
+      //       // 在这里处理点击事件
+      //       print('Item $index 被点击');
+      //     }
+
+      //     if (item.type == 'header') {
+      //       return StaffItem(isfinish: true, onTap: handleTap);
+      //     } else if (item.type == 'normal') {
+      //       return StaffItem(isfinish: false, onTap: handleTap);
+      //     }
+      //     return SizedBox.shrink(); // 如果有未定义的类型
+      //   },
+      // ),
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
@@ -89,7 +158,6 @@ class StaffDetailState extends StatelessWidget {
 
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(title: Text('示例页面')),
         body: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -102,16 +170,10 @@ class StaffDetailState extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.all(15), // 设置水平内边距
                 child: CountdownButton(
-                    endTime:
-                        DateTime.now().add(Duration(hours: 1))), // 替换为你的子组件
+                    endTime: DateTime.now().add(Duration(minutes: 20))),
               ),
-              // 控件2：按钮
-              // Container(
-              //   child: CountdownButton(
-              //       endTime: DateTime.now().add(Duration(hours: 1))),
-              // ),
               // 控件3：字符串和图标
-              CustomTextWithIcons(
+              TextDesWidget(
                 title: '[未経験者歓迎！]スタッフ募集（仮）',
                 iconTextPairs: [
                   [Icons.star, '10:00~11:00（休憩なし）'],
@@ -235,45 +297,6 @@ class CustomImage extends StatelessWidget {
           ),
         );
       },
-    );
-  }
-}
-
-// 控件3：自定义字符串和图标控件
-class CustomTextWithIcons extends StatelessWidget {
-  final String title;
-  final List<List<dynamic>> iconTextPairs;
-
-  const CustomTextWithIcons({
-    required this.title,
-    required this.iconTextPairs,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(15.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Text(
-            title,
-            style: TextStyle(
-              fontSize: 20.0, // 较大的字体
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          ...iconTextPairs.map((pair) {
-            return Row(
-              children: [
-                Icon(pair[0] as IconData, size: 16),
-                SizedBox(width: 8),
-                Text(pair[1] as String, style: TextStyle(fontSize: 16)),
-              ],
-            );
-          }).toList(),
-        ],
-      ),
     );
   }
 }
