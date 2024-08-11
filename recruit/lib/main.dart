@@ -13,6 +13,7 @@ class BottomNavigationBarExampleApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: YJBottomNavigationBar(),
     );
   }
@@ -157,6 +158,7 @@ class StaffDetailState extends StatelessWidget {
     );
 
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         body: SingleChildScrollView(
           child: Column(
