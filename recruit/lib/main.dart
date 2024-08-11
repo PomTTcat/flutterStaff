@@ -2,43 +2,77 @@ import 'package:flutter/material.dart';
 import './app/theme/ui/button/countdown_button.dart';
 
 void main() {
-  runApp(MyApp2());
+  runApp(BottomNavigationBarExampleApp());
 }
 
-class MyApp extends StatelessWidget {
+class BottomNavigationBarExampleApp extends StatelessWidget {
+  const BottomNavigationBarExampleApp({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: DefaultTabController(
-        length: 3, // 设置选项卡的数量
-        child: Scaffold(
-          appBar: AppBar(
-            title: Text('Bottom TabBar Example'),
+    return const MaterialApp(
+      home: YJBottomNavigationBar(),
+    );
+  }
+}
+
+class YJBottomNavigationBar extends StatefulWidget {
+  const YJBottomNavigationBar({super.key});
+
+  @override
+  State<YJBottomNavigationBar> createState() => _BottomNavigationBarState();
+}
+
+class _BottomNavigationBarState extends State<YJBottomNavigationBar> {
+  int _selectedIndex = 0;
+  static const TextStyle optionStyle =
+      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
+  static List<Widget> _widgetOptions = <Widget>[
+    const Text(
+      'Index 0: Home',
+      style: optionStyle,
+    ),
+    StaffDetailState(),
+  ];
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Top'),
+      ),
+      body: Center(
+        child: _widgetOptions.elementAt(_selectedIndex),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Home',
           ),
-          body: TabBarView(
-            children: [
-              Center(child: Text("お仕事一覧")),
-              Center(child: Text("Transit Tab")),
-              Center(child: Text("Bike Tab")),
-            ],
+          BottomNavigationBarItem(
+            icon: Icon(Icons.business),
+            label: 'Business',
           ),
-          bottomNavigationBar: TabBar(
-            tabs: [
-              Tab(icon: Icon(Icons.directions_car), text: "Car"),
-              Tab(icon: Icon(Icons.directions_transit), text: "Transit"),
-              Tab(icon: Icon(Icons.directions_bike), text: "Bike"),
-            ],
-            labelColor: Colors.blue,
-            unselectedLabelColor: Colors.grey,
-            indicator: BoxDecoration(),
-          ),
-        ),
+        ],
+        selectedItemColor: Colors.red, // 图标选中时的颜色
+        unselectedItemColor: Colors.grey, // 未选中时的图标和文本颜色
+        currentIndex: _selectedIndex,
+        onTap: _onItemTapped,
       ),
     );
   }
 }
 
-class MyApp2 extends StatelessWidget {
+//お仕事一覧
+
+class StaffDetailState extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ProgressModel model = ProgressModel(

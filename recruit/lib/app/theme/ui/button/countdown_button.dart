@@ -42,7 +42,7 @@ class _CountdownButtonState extends State<CountdownButton> {
 
   String _formatDuration(Duration duration) {
     if (duration == Duration.zero) {
-      return "受付終了"; // 当倒计时结束时显示
+      return "応募締切"; // 当倒计时结束时显示
     }
     String twoDigits(int n) => n.toString().padLeft(2, '0');
     String hours = twoDigits(duration.inHours);
