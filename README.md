@@ -5,5 +5,6 @@ This is a flutter demo
 
 ![1](https://github.com/PomTTcat/flutterStaff/blob/main/show/1.png)
 ![2](https://raw.githubusercontent.com/PomTTcat/flutterStaff/main/show/2.png)
-![3]([https://example.com/image.png](https://github.com/PomTTcat/flutterStaff/blob/main/show/3.png))
-![4]([https://example.com/image.png](https://github.com/PomTTcat/flutterStaff/blob/main/show/4.png))
+![3](https://github.com/PomTTcat/flutterStaff/blob/main/show/3.png)
+![4](https://github.com/PomTTcat/flutterStaff/blob/main/show/4.png)
+<img src="https://github.com/PomTTcat/flutterStaff/blob/main/show/1.png" alt="替代文字" width="300"/>
