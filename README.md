@@ -1,5 +1,7 @@
 # flutterStaff
-This is a flutter demo
+
+This is a flutter demo。
+開発デバイスはPixel 8 API 35。
 
 [ビデオをご覧ください。](https://github.com/PomTTcat/flutterStaff/raw/main/show/record.webm)
 
