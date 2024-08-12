@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import './app/theme/ui/button/countdown_button.dart';
 import './app/theme/ui/item/staff_item.dart';
-import './app/theme/ui/view/textDes_widget.dart';
+import './app/theme/ui/widget/textDes_widget.dart';
+import 'app/data/model/progrees_model.dart';
+import 'app/theme/ui/widget/staffdetail_bottomwidget.dart';
+import 'app/theme/ui/widget/staffdetail_titledesc_widget.dart';
+import 'app/theme/ui/widget/staffdetailevaluation_widget.dart';
 
 void main() {
   runApp(BottomNavigationBarExampleApp());
@@ -197,7 +201,7 @@ class StaffDetailState extends StatelessWidget {
               MyGridView(),
               FixedCustomDivider(),
               // 控件4：两个字符串
-              TitleDescription(
+              StaffDetailTitleDescWidget(
                 title: '業務内容',
                 description: '業務内容が入ります。\n'
                     'コンビニでの勤務スタッフです！\n'
@@ -206,14 +210,14 @@ class StaffDetailState extends StatelessWidget {
                     '業務内容が入ります。',
               ),
               FixedCustomDivider(),
-              TitleDescription(
+              StaffDetailTitleDescWidget(
                 title: '注意事項',
                 description: '注意事項が入ります。\n'
                     '丁寧な言葉づかいができる方\n'
                     '注意事項が入ります。',
               ),
               FixedCustomDivider(),
-              TitleDescription(
+              StaffDetailTitleDescWidget(
                 title: '備考',
                 description: '備考欄に文章が入ります。\n'
                     '備考欄に文章が入ります。\n'
@@ -253,9 +257,9 @@ class StaffDetailState extends StatelessWidget {
                 },
               ),
               FixedCustomDivider(),
-              EvaluationView(progressModel: model),
+              StaffDetailEvaluationWidget(progressModel: model),
               FullCustomDivider(),
-              CustomButtonRow(
+              StaffDetailBottomWidget(
                 buttonText: '応募する',
                 onMainButtonPressed: () {
                   // 主按钮点击事件
@@ -323,42 +327,6 @@ class FullCustomDivider extends StatelessWidget {
       thickness: 2.0, // 固定厚度
       indent: 0, // 固定左侧缩进
       endIndent: 0,
-    );
-  }
-}
-
-class TitleDescription extends StatelessWidget {
-  final String title;
-  final String description;
-
-  const TitleDescription({
-    required this.title,
-    required this.description,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(15.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Text(
-            title,
-            style: TextStyle(
-              fontSize: 20.0, // 较大的字体
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          SizedBox(height: 8.0), // 添加一些间距
-          Text(
-            description,
-            style: TextStyle(
-              fontSize: 16.0, // 较小的字体
-            ),
-          ),
-        ],
-      ),
     );
   }
 }
@@ -575,198 +543,6 @@ class CustomView extends StatelessWidget {
             ),
           ),
         ],
-      ),
-    );
-  }
-}
-
-class ProgressRow extends StatelessWidget {
-  final String leftText;
-  final String rightText;
-  final double progress;
-
-  const ProgressRow({
-    required this.leftText,
-    required this.rightText,
-    required this.progress,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 2.0),
-      child: Row(
-        children: [
-          Text(leftText,
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-              )),
-          SizedBox(width: 10),
-          Expanded(
-            child: LinearProgressIndicator(
-              value: progress,
-              backgroundColor: Colors.grey[300],
-              color: Color(0xFFFFC719),
-              minHeight: 5,
-            ),
-          ),
-          SizedBox(width: 10),
-          Text(rightText),
-        ],
-      ),
-    );
-  }
-}
-
-/*
-{
-    "title": "Example Title",
-    "items": [
-        { "type": 5, "value": 53 },
-        { "type": 4, "value": 11 },
-        { "type": 3, "value": 1 },
-        { "type": 2, "value": 0 },
-        { "type": 1, "value": 0 }
-    ],
-    "sum": 49
-}
- */
-class EvaluationView extends StatelessWidget {
-  final ProgressModel progressModel;
-
-  EvaluationView({required this.progressModel});
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(15.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Text(
-            progressModel.title,
-            style: TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          SizedBox(height: 5),
-          for (var item in progressModel.items)
-            Padding(
-              padding: const EdgeInsets.only(left: 10, right: 10), // 添加垂直方向的间距
-              child: ProgressRow(
-                leftText: ' ${item.type}',
-                rightText: '${item.value}件',
-                progress: item.value / progressModel.sum,
-              ),
-            ),
-        ],
-      ),
-    );
-  }
-}
-
-class ProgressModel {
-  final String title;
-  final List<ProgressItem> items;
-  final int sum;
-
-  ProgressModel({
-    required this.title,
-    required this.items,
-    required this.sum,
-  });
-}
-
-class ProgressItem {
-  final int type;
-  final int value;
-
-  ProgressItem({
-    required this.type,
-    required this.value,
-  });
-}
-
-class CustomButtonRow extends StatelessWidget {
-  final String buttonText;
-  final VoidCallback onMainButtonPressed;
-  final VoidCallback onFavoriteButtonPressed;
-  final VoidCallback onSettingsButtonPressed;
-
-  const CustomButtonRow({
-    Key? key,
-    required this.buttonText,
-    required this.onMainButtonPressed,
-    required this.onFavoriteButtonPressed,
-    required this.onSettingsButtonPressed,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: 75, // 设置总高度为 60
-      padding: const EdgeInsets.only(top: 10, left: 15, right: 15, bottom: 15),
-      child: LayoutBuilder(
-        builder: (BuildContext context, BoxConstraints constraints) {
-          double containerHeight = constraints.maxHeight;
-
-          return Row(
-            children: [
-              // 左边按钮
-              Expanded(
-                flex: 6, // 占据60%的宽度
-                child: ElevatedButton(
-                  onPressed: onMainButtonPressed,
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Color(0xFF48ABFF), // 设置背景色为 #48ABFF
-                    padding: EdgeInsets.symmetric(
-                      vertical: (containerHeight - 40) / 2, // 调整内边距以适应高度
-                    ),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(
-                          containerHeight / 2), // 圆角为高度的一半
-                    ),
-                  ),
-                  child: Stack(
-                    alignment: Alignment.center,
-                    children: [
-                      // 中心的文本
-                      Center(
-                        child: Text(
-                          buttonText,
-                          style: TextStyle(
-                              fontSize: 15, color: Colors.white), // 白色文字
-                        ),
-                      ),
-                      // 右侧的箭头
-                      Positioned(
-                        right: 25,
-                        child: Icon(
-                          Icons.arrow_forward_ios,
-                          color: Colors.white,
-                          size: 14,
-                        ), // 白色箭头
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              SizedBox(width: 10), // 左右按钮之间的间距
-              IconButton(
-                onPressed: onSettingsButtonPressed,
-                icon: Icon(Icons.settings),
-                iconSize: 30,
-              ),
-              IconButton(
-                onPressed: onFavoriteButtonPressed,
-                icon: Icon(Icons.favorite_border),
-                iconSize: 30,
-              ),
-            ],
-          );
-        },
       ),
     );
   }
