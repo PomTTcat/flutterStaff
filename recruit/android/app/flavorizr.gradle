@@ -1,0 +1,21 @@
+android {
+    flavorDimensions += "flavor-type"
+
+    productFlavors {
+        dev {
+            dimension "flavor-type"
+            applicationId "jp.co.game.gyj.dev"
+            resValue "string", "app_name", "GAMER dev"
+        }
+        stg {
+            dimension "flavor-type"
+            applicationId "jp.co.game.gyj.stg"
+            resValue "string", "app_name", "GAMER stg"
+        }
+        prod {
+            dimension "flavor-type"
+            applicationId "jp.co.game.gyj"
+            resValue "string", "app_name", "GAMER"
+        }
+    }
+}

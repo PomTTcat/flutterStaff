@@ -1,0 +1,45 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "recruit",
+            "cwd": "recruit",
+            "request": "launch",
+            "type": "dart",
+            "program": "lib/main.dart",
+            "args": [
+                "--flavor",
+                "dev",
+                "--dart-define-from-file=dart_defines/dev.env"
+            ]
+        },
+        {
+            "name": "recruit (stg mode)",
+            "cwd": "recruit",
+            "request": "launch",
+            "type": "dart",
+            "program": "lib/main.dart",
+            "args": [
+                "--flavor",
+                "stg",
+                "--dart-define-from-file=dart_defines/stg.env"
+            ]
+        },
+        {
+            "name": "recruit (release mode)",
+            "cwd": "recruit",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release",
+            "program": "lib/main.dart",
+            "args": [
+                "--flavor",
+                "prod",
+                "--dart-define-from-file=dart_defines/prod.env"
+            ]
+        }
+    ]
+}

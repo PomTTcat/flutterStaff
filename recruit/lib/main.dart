@@ -1,18 +1,15 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
-import 'package:recruit/app/theme/ui/bar/yj_bottom_navigationbar.dart';
+import 'package:flutter/services.dart';
+
+import 'app.dart';
+import 'flavors.dart';
 
 void main() {
-  runApp(MyApp());
-}
+  F.appFlavor = Flavor.values.firstWhere(
+    (element) => element.name == appFlavor,
+  );
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: YJBottomNavigationBar(),
-    );
-  }
+  runApp(const App());
 }
