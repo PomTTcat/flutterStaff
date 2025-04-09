@@ -1,10 +1,7 @@
-import 'dart:collection';
-
 import 'package:flutter/material.dart';
-import 'dart:math' as math;
 
-import '../widget/textDes_widget.dart';
 import '../button/countdown_button.dart';
+import '../widget/textDes_widget.dart';
 
 //応募締切
 // ignore: must_be_immutable
