@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:recruit/app/theme/ui/common_widget/gradient_appbar.dart';
 import 'package:recruit/app/theme/ui/item/staff_item.dart';
 import 'package:recruit/app/theme/ui/widget/staffdetial_widget.dart';
 
@@ -34,10 +35,13 @@ class _BottomNavigationBarState extends State<YJBottomNavigationBar> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('大阪府'),
+      appBar: CustomAppBar(
+        appBar: AppBar(
+          title: const Text('大阪府'),
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+        ),
       ),
-      // body: (StaffDetailState()),
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),
       ),
