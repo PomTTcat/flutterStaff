@@ -45,6 +45,14 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
 
+  # OSバージョンや端末モデル、デバイス名などの詳細情報を取得するプラグイン。
+  device_info_plus: ^11.3.0
+
+  # AndroidとiOSでユニークなデバイス識別子（UDID）を取得するプラグイン
+  flutter_udid: ^4.0.0
+
+  flutter_riverpod: ^2.6.1
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

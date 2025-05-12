@@ -13,7 +13,8 @@ class App extends StatelessWidget {
       title: F.title,
       theme: ThemeData(primarySwatch: Colors.blue),
       debugShowCheckedModeBanner: false,
-      home: _flavorBanner(child: YJBottomNavigationBar(), show: kDebugMode),
+      home:
+          _flavorBanner(child: const YJBottomNavigationBar(), show: kDebugMode),
     );
   }
 
