@@ -3,70 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:recruit/app/provider/all_in_one_provider.dart';
 import 'package:recruit/app/theme/ui/bar/badge_bottom_nav_icon.dart';
 import 'package:recruit/app/theme/ui/bar/tab_base_item.dart';
-import 'package:recruit/app/theme/ui/common_widget/gradient_appbar.dart';
 import 'package:recruit/app/theme/ui/item/staff_item.dart';
-import 'package:recruit/app/theme/ui/widget/staffdetial_widget.dart';
 import 'package:recruit/app/utils/click_debouncer.dart';
-
-class YJBottomNavigationBar extends StatefulWidget {
-  const YJBottomNavigationBar({super.key});
-
-  @override
-  State<YJBottomNavigationBar> createState() => _BottomNavigationBarState();
-}
-
-class _BottomNavigationBarState extends State<YJBottomNavigationBar> {
-  int _selectedIndex = 0;
-
-  static List<Widget> _widgetOptions = <Widget>[
-    ItemListView(),
-    StaffDetailWidget(),
-  ];
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
-
-  final List<ListItem> items = [
-    ListItem(type: 'header', title: 'Header 1'),
-    ListItem(type: 'normal', title: 'Item 1', subtitle: 'Subtitle 1'),
-    ListItem(type: 'normal', title: 'Item 2', subtitle: 'Subtitle 2'),
-  ];
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: CustomAppBar(
-        appBar: AppBar(
-          title: const Text('大阪府'),
-          backgroundColor: Colors.transparent,
-          elevation: 0,
-        ),
-      ),
-      body: Center(
-        child: _widgetOptions.elementAt(_selectedIndex),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.business),
-            label: 'お仕事一覧',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'マイページ',
-          ),
-        ],
-        selectedItemColor: Colors.red, // 图标选中时的颜色
-        unselectedItemColor: Colors.grey, // 未选中时的图标和文本颜色
-        currentIndex: _selectedIndex,
-        onTap: _onItemTapped,
-      ),
-    );
-  }
-}
 
 class ItemListView extends StatelessWidget {
   // final List<ListItem> items;
@@ -195,8 +133,6 @@ class _HomeBaseState extends ConsumerState<HomeBase> {
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         currentIndex: navigatorKeys.keys.toList().indexOf(currentTab),
-        selectedItemColor: Colors.red,
-        unselectedItemColor: Colors.grey,
         items: navigatorKeys.keys.toList().asMap().entries.map((entry) {
           final index = entry.key;
           final tabItem = entry.value;

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:recruit/app/theme/ui/bar/yj_bottom_navigationbar.dart';
+import 'package:recruit/app/theme/ui/bar/footer_menu_base.dart';
+import 'package:recruit/app/theme/ui/footer_menu/other/other_setting_page.dart';
 import 'package:recruit/app/theme/ui/widget/staffdetial_widget.dart';
 
 class TabBaseItem {
@@ -52,10 +53,10 @@ class TabBaseItem {
 
   static const TabBaseItem spotoba = TabBaseItem(
     id: 4,
-    title: 'スポバ',
-    icon: Icons.recommend_outlined,
-    selectIcon: Icons.recommend,
-    page: PlaceholderPage(title: 'スポバページ'),
+    title: 'その他',
+    icon: Icons.settings_outlined,
+    selectIcon: Icons.settings,
+    page: OtherSettingPage(),
   );
 
   static List<TabBaseItem> get values => [

@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:recruit/app/theme/ui/bar/yj_bottom_navigationbar.dart';
+import 'package:recruit/app/theme/themes.dart';
+import 'package:recruit/app/theme/ui/bar/footer_menu_base.dart';
 
 import 'flavors.dart';
 
@@ -10,8 +11,9 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: appLightTheme,
+      darkTheme: appDarkTheme,
       title: F.title,
-      theme: ThemeData(primarySwatch: Colors.blue),
       debugShowCheckedModeBanner: false,
       home: _flavorBanner(child: const HomeBase(), show: kDebugMode),
     );
