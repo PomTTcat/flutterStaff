@@ -18,7 +18,7 @@ class StaffItem extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(16),
       ),
-      margin: EdgeInsets.all(16),
+      margin: const EdgeInsets.all(16),
       child: ClipRRect(
         // 添加 ClipRRect 来裁剪子部件的边角
         borderRadius: BorderRadius.circular(16),
@@ -38,20 +38,21 @@ class StaffItem extends StatelessWidget {
                         top: 0,
                         left: 0,
                         child: Container(
-                          padding: EdgeInsets.all(0),
+                          padding: const EdgeInsets.all(0),
                           child: TriangleTextWidget(),
                         ),
                       )
                     : Padding(
-                        padding: EdgeInsets.all(15), // 设置水平内边距
+                        padding: const EdgeInsets.all(15), // 设置水平内边距
                         child: CountdownButton(
-                            endTime: DateTime.now().add(Duration(minutes: 20))),
+                            endTime: DateTime.now()
+                                .add(const Duration(minutes: 20))),
                       ),
               ],
             ),
             MiddleRowWidget(
                 text: "GO速給X多", onAddPressed: () {}, onRemovePressed: () {}),
-            TextDesWidget(
+            const TextDesWidget(
               title: '[未経験者歓迎！]スタッフ募集（仮）',
               iconTextPairs: [
                 [Icons.star, '10:00~11:00'],
@@ -63,9 +64,9 @@ class StaffItem extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
-                  Spacer(),
+                  const Spacer(),
                   RichText(
-                    text: TextSpan(
+                    text: const TextSpan(
                       children: <TextSpan>[
                         TextSpan(
                           text: '時給 ',
@@ -116,20 +117,20 @@ class MiddleRowWidget extends StatelessWidget {
             decoration: BoxDecoration(
                 border: Border.all(color: Colors.black), // 黑色边框
                 borderRadius: BorderRadius.circular(6.0)),
-            padding: EdgeInsets.only(left: 3, right: 3), // 文本的内边距
+            padding: const EdgeInsets.only(left: 3, right: 3), // 文本的内边距
             child: Text(text),
           ),
-          Spacer(), // 在文本和按钮之间添加空间
+          const Spacer(), // 在文本和按钮之间添加空间
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               IconButton(
-                icon: Icon(Icons.add),
+                icon: const Icon(Icons.add),
                 onPressed: onAddPressed,
                 iconSize: 20,
               ),
               IconButton(
-                icon: Icon(Icons.favorite_border),
+                icon: const Icon(Icons.favorite_border),
                 onPressed: onRemovePressed,
                 iconSize: 20,
               ),
@@ -161,14 +162,14 @@ class TriangleTextWidget extends StatelessWidget {
       child: CustomPaint(
         painter: RightAngleTrianglePainter(),
         child: Transform.rotate(
-          origin: Offset(-25, -60),
+          origin: const Offset(-25, -60),
           // angle: 0,
           angle: -0.785398, // 根据三角形的宽高比计算角度
           alignment: Alignment.center,
           child: Container(
             width: 100,
             height: 100,
-            child: Text(
+            child: const Text(
               '応募締切',
               style: TextStyle(
                   color: Colors.white,

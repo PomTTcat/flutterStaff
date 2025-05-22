@@ -31,7 +31,7 @@ class StaffDetailBottomWidget extends StatelessWidget {
                 child: ElevatedButton(
                   onPressed: onMainButtonPressed,
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Color(0xFF48ABFF), // 设置背景色为 #48ABFF
+                    backgroundColor: const Color(0xFF48ABFF), // 设置背景色为 #48ABFF
                     padding: EdgeInsets.symmetric(
                       vertical: (containerHeight - 40) / 2, // 调整内边距以适应高度
                     ),
@@ -47,12 +47,12 @@ class StaffDetailBottomWidget extends StatelessWidget {
                       Center(
                         child: Text(
                           buttonText,
-                          style: TextStyle(
+                          style: const TextStyle(
                               fontSize: 15, color: Colors.white), // 白色文字
                         ),
                       ),
                       // 右侧的箭头
-                      Positioned(
+                      const Positioned(
                         right: 25,
                         child: Icon(
                           Icons.arrow_forward_ios,
@@ -64,15 +64,15 @@ class StaffDetailBottomWidget extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(width: 10), // 左右按钮之间的间距
+              const SizedBox(width: 10), // 左右按钮之间的间距
               IconButton(
                 onPressed: onSettingsButtonPressed,
-                icon: Icon(Icons.settings),
+                icon: const Icon(Icons.settings),
                 iconSize: 30,
               ),
               IconButton(
                 onPressed: onFavoriteButtonPressed,
-                icon: Icon(Icons.favorite_border),
+                icon: const Icon(Icons.favorite_border),
                 iconSize: 30,
               ),
             ],
