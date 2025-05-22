@@ -18,7 +18,7 @@ Future<void> main() async {
   final uuid = await initializeUUIDAndGet();
   debugPrint(uuid);
 
-  runApp(const App());
+  runApp(const ProviderScope(child: App()));
 }
 
 /// UUID を初期化

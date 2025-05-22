@@ -13,8 +13,7 @@ class App extends StatelessWidget {
       title: F.title,
       theme: ThemeData(primarySwatch: Colors.blue),
       debugShowCheckedModeBanner: false,
-      home:
-          _flavorBanner(child: const YJBottomNavigationBar(), show: kDebugMode),
+      home: _flavorBanner(child: const HomeBase(), show: kDebugMode),
     );
   }
 
@@ -23,7 +22,7 @@ class App extends StatelessWidget {
           location: BannerLocation.topStart,
           message: F.name,
           color: Colors.green.withAlpha(150),
-          textStyle: TextStyle(
+          textStyle: const TextStyle(
             fontWeight: FontWeight.w700,
             fontSize: 12.0,
             letterSpacing: 1.0,
